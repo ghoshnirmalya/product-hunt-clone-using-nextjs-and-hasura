@@ -1,16 +1,19 @@
 import React from 'react'
-import getConfig from 'next/config'
-const { publicRuntimeConfig } = getConfig()
+import { Box, Button } from "@chakra-ui/core";
 
-const { API_URL } = publicRuntimeConfig
-
-export default class extends React.Component {
-  static async getInitialProps() {
-    // fetch(`${API_URL}/some-path`)
-    return {}
-  }
-
-  render() {
-    return <div>The API_URL is {API_URL}</div>
-  }
+const IndexPage = () => {
+  return (
+    <Box
+      w="100%"
+      h="100vh"
+      p={4}
+      d="flex"
+      alignItems="center"
+      justifyContent="center"
+    >
+      <Button>Hello World!</Button>
+    </Box>
+  )
 }
+
+export default IndexPage

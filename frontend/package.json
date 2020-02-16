@@ -10,6 +10,10 @@
     "run-docker": "docker run --rm -it -p 3000:3000 -e 'API_URL=https://example.com' next-app"
   },
   "dependencies": {
+    "@chakra-ui/core": "^0.5.2",
+    "@emotion/core": "^10.0.27",
+    "@emotion/styled": "^10.0.27",
+    "emotion-theming": "^10.0.27",
     "next": "latest",
     "react": "^16.7.0",
     "react-dom": "^16.7.0"
