@@ -1,6 +1,6 @@
 {
-  "name": "with-docker",
-  "version": "1.0.0",
+  "name": "frontend",
+  "version": "0.0.1",
   "scripts": {
     "dev": "next",
     "build": "next build",
@@ -17,5 +17,5 @@
   "devDependencies": {
     "isomorphic-unfetch": "^3.0.0"
   },
-  "license": "ISC"
+  "license": "MIT"
 }
