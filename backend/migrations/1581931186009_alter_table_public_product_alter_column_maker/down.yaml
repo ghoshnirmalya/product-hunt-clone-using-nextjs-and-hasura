@@ -1,0 +1,6 @@
+- args:
+    sql: COMMENT ON COLUMN "public"."product"."maker" IS E'null'
+  type: run_sql
+- args:
+    sql: alter table "public"."product" rename column "maker_id" to "maker";
+  type: run_sql

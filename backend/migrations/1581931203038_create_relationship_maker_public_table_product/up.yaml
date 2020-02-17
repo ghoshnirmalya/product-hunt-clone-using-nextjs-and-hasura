@@ -1,0 +1,13 @@
+- args:
+    name: maker
+    table:
+      name: product
+      schema: public
+    using:
+      manual_configuration:
+        column_mapping:
+          maker_id: id
+        remote_table:
+          name: user
+          schema: public
+  type: create_object_relationship

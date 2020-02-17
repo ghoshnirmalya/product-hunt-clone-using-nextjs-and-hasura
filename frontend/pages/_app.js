@@ -1,17 +1,23 @@
 import React from "react";
 import NextApp from "next/app";
 import { ThemeProvider, CSSReset, theme } from "@chakra-ui/core";
+import { ClientContext } from "graphql-hooks";
+
+import withGraphQLClient from "../lib/with-graphql-client";
 
 class App extends NextApp {
   render() {
-    const { Component } = this.props;
+    const { Component, pageProps, graphQLClient } = this.props;
+
     return (
       <ThemeProvider theme={theme}>
         <CSSReset />
-        <Component />
+        <ClientContext.Provider value={graphQLClient}>
+          <Component {...pageProps} />
+        </ClientContext.Provider>
       </ThemeProvider>
     );
   }
 }
 
-export default App;
+export default withGraphQLClient(App);

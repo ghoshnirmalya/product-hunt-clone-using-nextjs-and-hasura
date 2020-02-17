@@ -1,7 +1,52 @@
 import React from "react";
-import { Grid, Box } from "@chakra-ui/core";
+import { Text, Grid, Box, Spinner, Alert, AlertIcon } from "@chakra-ui/core";
+import { useQuery } from "graphql-hooks";
+
+export const allProductsQuery = `
+  query {
+    product {
+      id
+      name
+      description
+      created_at
+    }
+  }
+`;
 
 const ProductsList = () => {
+  const { loading, error, data } = useQuery(allProductsQuery);
+
+  if (loading) {
+    return (
+      <Box
+        w="100%"
+        h="100vh"
+        d="flex"
+        alignItems="center"
+        justifyContent="center"
+      >
+        <Spinner />
+      </Box>
+    );
+  }
+
+  if (error) {
+    return (
+      <Box
+        w="100%"
+        h="100vh"
+        d="flex"
+        alignItems="center"
+        justifyContent="center"
+      >
+        <Alert status="error" variant="left-accent">
+          <AlertIcon />
+          There was an error processing your request
+        </Alert>
+      </Box>
+    );
+  }
+
   return (
     <Box
       w="100%"
@@ -20,12 +65,23 @@ const ProductsList = () => {
           ]}
           gap={8}
         >
-          <Box w="100%" h={24} bg="#764ABC" rounded="md" />
-          <Box w="100%" h={24} bg="#764ABC" rounded="md" />
-          <Box w="100%" h={24} bg="#764ABC" rounded="md" />
-          <Box w="100%" h={24} bg="#764ABC" rounded="md" />
-          <Box w="100%" h={24} bg="#764ABC" rounded="md" />
-          <Box w="100%" h={24} bg="#764ABC" rounded="md" />
+          {data.product.map(item => {
+            return (
+              <Box
+                key={item.id}
+                w="100%"
+                p={12}
+                bg="#764ABC"
+                rounded="md"
+                color="white"
+              >
+                <Text fontSize="xl" fontWeight="semibold" lineHeight="short">
+                  {item.name}
+                </Text>
+                <Text mt={2}>{item.description}</Text>
+              </Box>
+            );
+          })}
         </Grid>
       </Box>
     </Box>

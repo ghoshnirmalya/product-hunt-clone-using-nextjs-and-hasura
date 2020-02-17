@@ -1,0 +1,12 @@
+- args:
+    name: products
+    table:
+      name: user
+      schema: public
+    using:
+      foreign_key_constraint_on:
+        column: maker_id
+        table:
+          name: product
+          schema: public
+  type: create_array_relationship
