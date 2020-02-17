@@ -1,19 +1,9 @@
-import React from 'react'
-import { Box, Button } from "@chakra-ui/core";
+import React, { Component } from "react";
 
-const IndexPage = () => {
-  return (
-    <Box
-      w="100%"
-      h="100vh"
-      p={4}
-      d="flex"
-      alignItems="center"
-      justifyContent="center"
-    >
-      <Button>Hello World!</Button>
-    </Box>
-  )
+import SignUpForm from "../components/forms/sign-up";
+
+export default class IndexPage extends Component {
+  render() {
+    return <SignUpForm />;
+  }
 }
-
-export default IndexPage

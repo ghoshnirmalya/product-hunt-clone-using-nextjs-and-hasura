@@ -1,7 +1,4 @@
-const {
-  ValidationError,
-  NotFoundError
-} = require('objection');
+const { ValidationError, NotFoundError } = require("objection");
 
 const {
   DBError,
@@ -11,44 +8,44 @@ const {
   ForeignKeyViolationError,
   CheckViolationError,
   DataError
-} = require('objection-db-errors');
+} = require("objection-db-errors");
 
 // In this example `res` is an express response object.
 function errorHandler(err, res) {
   if (err instanceof ValidationError) {
     switch (err.type) {
-      case 'ModelValidation':
+      case "ModelValidation":
         res.status(400).send({
           message: err.message,
-          type: 'ModelValidation',
+          type: "ModelValidation",
           data: err.data
         });
         break;
-      case 'RelationExpression':
+      case "RelationExpression":
         res.status(400).send({
           message: err.message,
-          type: 'InvalidRelationExpression',
+          type: "InvalidRelationExpression",
           data: {}
         });
         break;
-      case 'UnallowedRelation':
+      case "UnallowedRelation":
         res.status(400).send({
           message: err.message,
-          type: 'UnallowedRelation',
+          type: "UnallowedRelation",
           data: {}
         });
         break;
-      case 'InvalidGraph':
+      case "InvalidGraph":
         res.status(400).send({
           message: err.message,
-          type: 'InvalidGraph',
+          type: "InvalidGraph",
           data: {}
         });
         break;
       default:
         res.status(400).send({
           message: err.message,
-          type: 'UnknownValidationError',
+          type: "UnknownValidationError",
           data: {}
         });
         break;
@@ -56,13 +53,13 @@ function errorHandler(err, res) {
   } else if (err instanceof NotFoundError) {
     res.status(404).send({
       message: err.message,
-      type: 'NotFound',
+      type: "NotFound",
       data: {}
     });
   } else if (err instanceof UniqueViolationError) {
     res.status(409).send({
       message: err.message,
-      type: 'UniqueViolation',
+      type: "UniqueViolation",
       data: {
         columns: err.columns,
         table: err.table,
@@ -72,16 +69,16 @@ function errorHandler(err, res) {
   } else if (err instanceof NotNullViolationError) {
     res.status(400).send({
       message: err.message,
-      type: 'NotNullViolation',
+      type: "NotNullViolation",
       data: {
         column: err.column,
-        table: err.table,
+        table: err.table
       }
     });
   } else if (err instanceof ForeignKeyViolationError) {
     res.status(409).send({
       message: err.message,
-      type: 'ForeignKeyViolation',
+      type: "ForeignKeyViolation",
       data: {
         table: err.table,
         constraint: err.constraint
@@ -90,7 +87,7 @@ function errorHandler(err, res) {
   } else if (err instanceof CheckViolationError) {
     res.status(400).send({
       message: err.message,
-      type: 'CheckViolation',
+      type: "CheckViolation",
       data: {
         table: err.table,
         constraint: err.constraint
@@ -99,22 +96,22 @@ function errorHandler(err, res) {
   } else if (err instanceof DataError) {
     res.status(400).send({
       message: err.message,
-      type: 'InvalidData',
+      type: "InvalidData",
       data: {}
     });
   } else if (err instanceof DBError) {
     res.status(500).send({
       message: err.message,
-      type: 'UnknownDatabaseError',
+      type: "UnknownDatabaseError",
       data: {}
     });
   } else {
     res.status(500).send({
       message: err.message,
-      type: 'UnknownError',
+      type: "UnknownError",
       data: {}
     });
   }
 }
 
-module.exports = { errorHandler }
+module.exports = { errorHandler };

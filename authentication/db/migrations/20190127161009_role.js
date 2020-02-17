@@ -1,17 +1,17 @@
 exports.up = function(knex, Promise) {
-  return knex.schema.createTable('role', table => {
+  return knex.schema.createTable("role", table => {
     table
-      .uuid('id')
+      .uuid("id")
       .primary()
       .unique()
-      .defaultTo(knex.raw('gen_random_uuid()'))
+      .defaultTo(knex.raw("gen_random_uuid()"));
     table
-      .string('name')
+      .string("name")
       .unique()
-      .notNullable()
-  })
-}
+      .notNullable();
+  });
+};
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTable('role')
-}
+  return knex.schema.dropTable("role");
+};

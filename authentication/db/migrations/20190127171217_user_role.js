@@ -1,25 +1,25 @@
 exports.up = function(knex, Promise) {
-  return knex.schema.createTable('user_role', table => {
+  return knex.schema.createTable("user_role", table => {
     table
-      .uuid('id')
+      .uuid("id")
       .primary()
       .unique()
-      .defaultTo(knex.raw('gen_random_uuid()'))
+      .defaultTo(knex.raw("gen_random_uuid()"));
     table
-      .uuid('role_id')
+      .uuid("role_id")
       .unsigned()
       .index()
-      .references('id')
-      .inTable('role')
+      .references("id")
+      .inTable("role");
     table
-      .uuid('user_id')
+      .uuid("user_id")
       .unsigned()
       .index()
-      .references('id')
-      .inTable('user')
-  })
-}
+      .references("id")
+      .inTable("user");
+  });
+};
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTable('user_role')
-}
+  return knex.schema.dropTable("user_role");
+};
