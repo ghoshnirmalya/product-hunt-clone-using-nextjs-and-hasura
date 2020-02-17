@@ -1,6 +1,7 @@
 import React from "react";
 import { Text, Grid, Box, Spinner, Alert, AlertIcon } from "@chakra-ui/core";
 import { useQuery } from "graphql-hooks";
+import Link from "next/link";
 
 export const allProductsQuery = `
   query {
@@ -14,13 +15,15 @@ export const allProductsQuery = `
 `;
 
 const ProductsList = () => {
-  const { loading, error, data } = useQuery(allProductsQuery);
+  const { loading, error, data } = useQuery(allProductsQuery, {
+    skipCache: true
+  });
 
   if (loading) {
     return (
       <Box
         w="100%"
-        h="100vh"
+        minH="100vh"
         d="flex"
         alignItems="center"
         justifyContent="center"
@@ -34,7 +37,7 @@ const ProductsList = () => {
     return (
       <Box
         w="100%"
-        h="100vh"
+        minH="100vh"
         d="flex"
         alignItems="center"
         justifyContent="center"
@@ -50,7 +53,7 @@ const ProductsList = () => {
   return (
     <Box
       w="100%"
-      h="100vh"
+      minH="100vh"
       p={4}
       d="flex"
       alignItems="center"
@@ -67,19 +70,24 @@ const ProductsList = () => {
         >
           {data.product.map(item => {
             return (
-              <Box
+              <Link
                 key={item.id}
-                w="100%"
-                p={12}
-                bg="#764ABC"
-                rounded="md"
-                color="white"
+                href="/products/[productId]/edit"
+                as={`/products/${item.id}/edit`}
               >
-                <Text fontSize="xl" fontWeight="semibold" lineHeight="short">
-                  {item.name}
-                </Text>
-                <Text mt={2}>{item.description}</Text>
-              </Box>
+                <a>
+                  <Box w="100%" p={12} bg="#764ABC" rounded="md" color="white">
+                    <Text
+                      fontSize="xl"
+                      fontWeight="semibold"
+                      lineHeight="short"
+                    >
+                      {item.name}
+                    </Text>
+                    <Text mt={2}>{item.description}</Text>
+                  </Box>
+                </a>
+              </Link>
             );
           })}
         </Grid>

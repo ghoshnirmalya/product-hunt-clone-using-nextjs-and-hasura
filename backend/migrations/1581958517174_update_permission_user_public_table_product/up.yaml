@@ -1,0 +1,10 @@
+- args:
+    permission:
+      filter:
+        maker_id:
+          _eq: X-Hasura-User-Id
+    role: user
+    table:
+      name: product
+      schema: public
+  type: create_delete_permission

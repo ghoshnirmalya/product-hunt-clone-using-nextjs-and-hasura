@@ -43,6 +43,11 @@ const SignInForm = () => {
         maxAge: 30 * 24 * 60 * 60,
         path: "/"
       });
+
+      setCookie({}, "X-Hasura-User-Role", data.roles[0], {
+        maxAge: 30 * 24 * 60 * 60,
+        path: "/"
+      });
     }
   };
 
@@ -60,7 +65,7 @@ const SignInForm = () => {
   return (
     <Box
       w="100%"
-      h="100vh"
+      minH="100vh"
       p={4}
       d="flex"
       alignItems="center"

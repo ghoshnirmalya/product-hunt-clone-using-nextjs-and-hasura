@@ -1,6 +1,7 @@
 import { GraphQLClient } from "graphql-hooks";
 import memCache from "graphql-hooks-memcache";
 import unfetch from "isomorphic-unfetch";
+import { parseCookies } from "nookies";
 
 let graphQLClient = null;
 
@@ -11,7 +12,9 @@ function create(initialState = {}) {
     cache: memCache({ initialState }),
     fetch: typeof window !== "undefined" ? fetch.bind() : unfetch, // eslint-disable-line
     headers: {
-      "x-hasura-admin-secret": "secret"
+      "x-hasura-admin-secret": "secret",
+      "x-hasura-role": parseCookies()["X-Hasura-User-Role"],
+      "X-Hasura-User-Id": parseCookies()["X-Hasura-User-Id"]
     }
   });
 }
