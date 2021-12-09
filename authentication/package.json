@@ -18,7 +18,7 @@
     "fnv-plus": "^1.2.12",
     "jsonwebtoken": "^8.4.0",
     "knex": "^0.19.5",
-    "objection": "^1.2.6",
+    "objection": "^2.2.16",
     "objection-db-errors": "^1.0.0",
     "passport": "^0.4.0",
     "passport-http-bearer": "^1.0.1",
