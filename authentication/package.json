@@ -17,7 +17,7 @@
     "express-validator": "^5.3.0",
     "fnv-plus": "^1.2.12",
     "jsonwebtoken": "^8.4.0",
-    "knex": "^0.19.5",
+    "knex": "^2.4.0",
     "objection": "^2.2.16",
     "objection-db-errors": "^1.0.0",
     "passport": "^0.6.0",
